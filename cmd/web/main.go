@@ -8,7 +8,7 @@ import (
 	"os"
 	"snippetbox/internal/models"
 
-	_ "github.com/go-sql-driver/mysql" // New import
+	_ "github.com/mattn/go-sqlite3" // New import
 )
 
 // Add a snippets field to the application struct. This will allow us to
@@ -50,7 +50,7 @@ func main() {
 // The openDB() function wraps sql.Open() and returns a sql.DB connection pool
 // for a given DSN.
 func openDB(dsn string) (*sql.DB, error) {
-	db, err := sql.Open("mysql", dsn)
+	db, err := sql.Open("sqlite3", "./data/storage.db")
 	if err != nil {
 		return nil, err
 	}
